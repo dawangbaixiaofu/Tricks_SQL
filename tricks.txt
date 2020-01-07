@@ -1,0 +1,38 @@
+--按时间去重
+select a.*
+from table a
+where not exists (select 1 from table b where a.id = b.id
+	and a.time < b.time - 3/24/60)
+
+
+--求某个列连续为0的个数
+--用到了lag() lead()函数；
+
+
+--连续0申报
+1.按照月份进行排序--ranks；
+2.按照销售额进行分组，每组内部按照月份进行排序--row_numbers
+3.按照ranks-row_numbers进行分组，统计每组的个数
+
+
+--游标的使用
+分为MySQL和sql
+
+--数值比较函数least
+变量类型必须是数值型，否则会出现问题。
+
+
+
+--空值的情况
+1.原先就是没有数据，没有相应的字段记录
+2.字段值为null
+
+--sql和MySQL存储过程和函数的编写
+
+
+MySQL函数中不能建立临时表，删除表等事务性操作。
+查询出的字段名称和into变量名称不能一样，一样的话会导致插入数据为空。
+MySQL当前把参考解释为一个变量的名字，而不是一个表中的列。变量默认初始化为空。所以into赋值的时候为空。
+
+
+--sql中定时任务
